@@ -1,0 +1,56 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "label": "Coffee",
+          "type": "checkbox",
+          "layout": {
+            "row": "Row_07khu2s",
+            "columns": null
+          },
+          "id": "Field_05doc15",
+          "key": "coffee"
+        },
+        {
+          "label": "Juice",
+          "type": "checkbox",
+          "layout": {
+            "row": "Row_07khu2s",
+            "columns": null
+          },
+          "id": "Field_0zw1dzd",
+          "key": "juice"
+        },
+        {
+          "label": "Tea",
+          "type": "checkbox",
+          "layout": {
+            "row": "Row_07khu2s",
+            "columns": null
+          },
+          "id": "Field_1m02qh4",
+          "key": "tea"
+        }
+      ],
+      "showOutline": true,
+      "label": "Menu",
+      "type": "group",
+      "layout": {
+        "row": "Row_0ilf9f0",
+        "columns": null
+      },
+      "id": "Field_0pf7vy6"
+    }
+  ],
+  "type": "default",
+  "id": "drinkForm1",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.28.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "schemaVersion": 16,
+  "versionTag": "1"
+}

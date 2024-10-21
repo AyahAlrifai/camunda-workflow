@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1k32zyj" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <bpmn:collaboration id="Collaboration_0dvu79o">
+    <bpmn:participant id="Participant_0l8jrd7" name="Review Task Stage" processRef="SCRIPT_TASK" />
+  </bpmn:collaboration>
+  <bpmn:process id="SCRIPT_TASK" name="Script Task" isExecutable="true" camunda:historyTimeToLive="P30D">
+    <bpmn:sequenceFlow id="Flow_0tayflp" sourceRef="REVIEW_TASK" targetRef="Activity_1aghd9x" />
+    <bpmn:sequenceFlow id="Flow_1m5xaod" sourceRef="START" targetRef="REVIEW_TASK" />
+    <bpmn:startEvent id="START" name="Start" camunda:formRef="drinkForm3" camunda:formRefBinding="latest">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_1m5xaod</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="END" name="End">
+      <bpmn:incoming>Flow_0dr5o5f</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0dr5o5f" sourceRef="Activity_1aghd9x" targetRef="END" />
+    <bpmn:userTask id="Activity_1aghd9x" name="start order">
+      <bpmn:incoming>Flow_0tayflp</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dr5o5f</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:scriptTask id="REVIEW_TASK" name="Take Order" scriptFormat="groovy" camunda:resultVariable="isAvailable">
+      <bpmn:incoming>Flow_1m5xaod</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tayflp</bpmn:outgoing>
+      <bpmn:script>println "************************"
+println "drink=" + drink
+println "************************"
+if(drink == "coffee") {
+return "true";
+}
+
+return "false";</bpmn:script>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0dvu79o">
+      <bpmndi:BPMNShape id="Participant_0l8jrd7_di" bpmnElement="Participant_0l8jrd7" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="660" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="START">
+        <dc:Bounds x="222" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="229" y="235" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1escc36_di" bpmnElement="END">
+        <dc:Bounds x="732" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="740" y="235" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cr81ht_di" bpmnElement="Activity_1aghd9x" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="550" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xmouft_di" bpmnElement="REVIEW_TASK" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
+        <dc:Bounds x="370" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0tayflp_di" bpmnElement="Flow_0tayflp">
+        <di:waypoint x="470" y="210" />
+        <di:waypoint x="550" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m5xaod_di" bpmnElement="Flow_1m5xaod">
+        <di:waypoint x="258" y="210" />
+        <di:waypoint x="370" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dr5o5f_di" bpmnElement="Flow_0dr5o5f">
+        <di:waypoint x="650" y="210" />
+        <di:waypoint x="732" y="210" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

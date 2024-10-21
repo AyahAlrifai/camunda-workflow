@@ -1,0 +1,50 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "values": [
+            {
+              "label": "Tea",
+              "value": "tea"
+            },
+            {
+              "label": "Coffee",
+              "value": "coffee"
+            },
+            {
+              "label": "Juice",
+              "value": "juice"
+            }
+          ],
+          "label": "",
+          "type": "radio",
+          "layout": {
+            "row": "Row_1ir5117",
+            "columns": null
+          },
+          "id": "Field_0zpj2ag",
+          "key": "drink"
+        }
+      ],
+      "showOutline": true,
+      "label": "Menu",
+      "type": "group",
+      "layout": {
+        "row": "Row_0ilf9f0",
+        "columns": null
+      },
+      "id": "Field_0pf7vy6"
+    }
+  ],
+  "type": "default",
+  "id": "drinkForm3",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.28.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "schemaVersion": 16,
+  "versionTag": "1"
+}

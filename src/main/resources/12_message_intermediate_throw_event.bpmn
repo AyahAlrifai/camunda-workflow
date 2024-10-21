@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_SendingProcess" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.28.0">
+  <bpmn:message id="Message_SendNotification" name="SendNotification" />
+  <bpmn:process id="Sending_Process_A" name="Sending Process A" isExecutable="true" camunda:historyTimeToLive="P30D">
+    <bpmn:startEvent id="StartEvent_Sending" name="Start Sending" camunda:formRef="drinkForm3" camunda:formRefBinding="latest">
+      <bpmn:outgoing>Flow_StartToSend</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:intermediateThrowEvent id="ThrowMessage_SendNotification" name="Send Notification Message">
+      <bpmn:incoming>Flow_SendToMessageEvent</bpmn:incoming>
+      <bpmn:outgoing>Flow_MessageToEnd</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_SendNotification" camunda:expression="#{execution.getProcessEngineServices().getRuntimeService().createMessageCorrelation(&#39;SendNotification&#39;).setVariable(&#34;order&#34;,drink).correlate()}" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_StartToSend" sourceRef="StartEvent_Sending" targetRef="TAKE_ORDER" />
+    <bpmn:sequenceFlow id="Flow_SendToMessageEvent" sourceRef="TAKE_ORDER" targetRef="ThrowMessage_SendNotification" />
+    <bpmn:sequenceFlow id="Flow_MessageToEnd" sourceRef="ThrowMessage_SendNotification" targetRef="Activity_18y4esv" />
+    <bpmn:userTask id="TAKE_ORDER" name="Take Order">
+      <bpmn:incoming>Flow_StartToSend</bpmn:incoming>
+      <bpmn:outgoing>Flow_SendToMessageEvent</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_Sending" name="End Sending">
+      <bpmn:incoming>Flow_0u2k2h2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_18y4esv" name="Take Order">
+      <bpmn:incoming>Flow_MessageToEnd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0u2k2h2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0u2k2h2" sourceRef="Activity_18y4esv" targetRef="EndEvent_Sending" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_SendingProcess">
+    <bpmndi:BPMNPlane id="BPMNPlane_SendingProcess" bpmnElement="Sending_Process_A">
+      <bpmndi:BPMNShape id="StartEventShape_Sending" bpmnElement="StartEvent_Sending">
+        <dc:Bounds x="170" y="130" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="154" y="173" width="67" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ThrowMessageShape_SendNotification" bpmnElement="ThrowMessage_SendNotification" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
+        <dc:Bounds x="432" y="130" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="408" y="176" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pv30ak_di" bpmnElement="TAKE_ORDER" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="270" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_02n4yoj_di" bpmnElement="EndEvent_Sending">
+        <dc:Bounds x="682" y="130" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="668" y="173" width="63" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_12gn1px" bpmnElement="Activity_18y4esv" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="520" y="108" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="FlowEdge_StartToSend" bpmnElement="Flow_StartToSend">
+        <di:waypoint x="206" y="148" />
+        <di:waypoint x="270" y="148" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="FlowEdge_SendToMessageEvent" bpmnElement="Flow_SendToMessageEvent">
+        <di:waypoint x="370" y="148" />
+        <di:waypoint x="432" y="148" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="FlowEdge_MessageToEnd" bpmnElement="Flow_MessageToEnd">
+        <di:waypoint x="468" y="148" />
+        <di:waypoint x="520" y="148" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0u2k2h2_di" bpmnElement="Flow_0u2k2h2">
+        <di:waypoint x="620" y="148" />
+        <di:waypoint x="682" y="148" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,139 @@
+{
+  "components": [
+    {
+      "text": "# Menu",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_1o7tiip",
+        "columns": null
+      },
+      "id": "Field_1pfi0qs"
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1c7186g",
+        "columns": 16
+      },
+      "id": "Field_0e2jmue",
+      "key": "name",
+      "description": "enter you name 'firtName' + 'secondName'",
+      "defaultValue": "Ayah Alrefai",
+      "validate": {
+        "required": true,
+        "minLength": 4
+      }
+    },
+    {
+      "components": [
+        {
+          "text": "# Tea",
+          "label": "Text view",
+          "type": "text",
+          "layout": {
+            "row": "Row_0sw30sr",
+            "columns": 3
+          },
+          "id": "Field_1toearc"
+        },
+        {
+          "label": "Number",
+          "type": "number",
+          "layout": {
+            "row": "Row_0sw30sr",
+            "columns": 5
+          },
+          "id": "Field_08hjvdk",
+          "key": "tea",
+          "defaultValue": 1,
+          "decimalDigits": 0,
+          "increment": "1",
+          "validate": {
+            "min": 1
+          }
+        },
+        {
+          "text": "# Coffee",
+          "label": "Text view",
+          "type": "text",
+          "layout": {
+            "row": "Row_05izk27",
+            "columns": 3
+          },
+          "id": "Field_0g4bgsl"
+        },
+        {
+          "label": "Number",
+          "type": "number",
+          "layout": {
+            "row": "Row_05izk27",
+            "columns": 5
+          },
+          "id": "Field_0hys1cf",
+          "key": "coffee",
+          "defaultValue": 1,
+          "decimalDigits": 0,
+          "increment": "1",
+          "validate": {
+            "min": 1
+          }
+        },
+        {
+          "text": "# Juice",
+          "label": "Text view",
+          "type": "text",
+          "layout": {
+            "row": "Row_0fyrzys",
+            "columns": 3
+          },
+          "id": "Field_0cmarsj"
+        },
+        {
+          "label": "Number",
+          "type": "number",
+          "layout": {
+            "row": "Row_0fyrzys",
+            "columns": 5
+          },
+          "id": "Field_0zze1wm",
+          "key": "juice",
+          "defaultValue": 1,
+          "decimalDigits": 0,
+          "increment": "1",
+          "validate": {
+            "min": 1
+          }
+        }
+      ],
+      "showOutline": true,
+      "label": "",
+      "type": "group",
+      "layout": {
+        "row": "Row_0ilf9f0",
+        "columns": null
+      },
+      "id": "Field_0pf7vy6"
+    },
+    {
+      "label": "Separator",
+      "type": "separator",
+      "layout": {
+        "row": "Row_03zo4cb",
+        "columns": null
+      },
+      "id": "Field_0iekqzi"
+    }
+  ],
+  "type": "default",
+  "id": "drinkForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.28.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "schemaVersion": 16,
+  "versionTag": "1"
+}

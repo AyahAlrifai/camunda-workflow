@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="dmn_1" name="dmn_1" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <decision id="AVAILABLE_DRINK" name="drink available" camunda:historyTimeToLive="P30D">
+    <decisionTable id="DecisionTable_0kw5htb">
+      <input id="InputClause_046v6lc" label="Drink" camunda:inputVariable="drink">
+        <inputExpression id="LiteralExpression_0y3fh1b" typeRef="string" />
+      </input>
+      <output id="OutputClause_0ukhquy" label="Is Available" name="isAvailable" typeRef="string" />
+      <rule id="DecisionRule_1rt3w4c">
+        <inputEntry id="UnaryTests_06eiuqq">
+          <text>"juice"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1sjzhjo">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bughj1">
+        <inputEntry id="UnaryTests_07wn509">
+          <text>"coffee"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vb73jl">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gyn2fc">
+        <inputEntry id="UnaryTests_0uitdg9">
+          <text>"tea"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kofbqp">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_0u74rde" dmnElementRef="AVAILABLE_DRINK">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

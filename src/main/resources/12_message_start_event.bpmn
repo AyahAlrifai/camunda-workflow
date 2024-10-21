@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_NotificationProcess" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.28.0">
+  <bpmn:message id="Message_SendNotification" name="SendNotification" />
+  <bpmn:process id="Notification_Process_B" name="Notification Process B" isExecutable="true" camunda:historyTimeToLive="P30D">
+    <bpmn:startEvent id="StartEvent_ReceiveNotification" name="Receive Notification">
+      <bpmn:outgoing>Flow_ReceiveToPrepareNotification</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_SendNotification" />
+    </bpmn:startEvent>
+    <bpmn:userTask id="Task_PrepareNotification" name="Prepare Notification">
+      <bpmn:incoming>Flow_ReceiveToPrepareNotification</bpmn:incoming>
+      <bpmn:outgoing>Flow_PrepareToSendNotification</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_SendNotification" name="Send Notification">
+      <bpmn:incoming>Flow_PrepareToSendNotification</bpmn:incoming>
+      <bpmn:outgoing>Flow_SendToEnd</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_NotificationProcess" name="End">
+      <bpmn:incoming>Flow_SendToEnd</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_ReceiveToPrepareNotification" sourceRef="StartEvent_ReceiveNotification" targetRef="Task_PrepareNotification" />
+    <bpmn:sequenceFlow id="Flow_PrepareToSendNotification" sourceRef="Task_PrepareNotification" targetRef="Task_SendNotification" />
+    <bpmn:sequenceFlow id="Flow_SendToEnd" sourceRef="Task_SendNotification" targetRef="EndEvent_NotificationProcess" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_NotificationProcess">
+    <bpmndi:BPMNPlane id="BPMNPlane_NotificationProcess" bpmnElement="Notification_Process_B">
+      <bpmndi:BPMNShape id="StartEventShape_ReceiveNotification" bpmnElement="StartEvent_ReceiveNotification" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
+        <dc:Bounds x="170" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="160" y="146" width="55" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TaskShape_PrepareNotification" bpmnElement="Task_PrepareNotification" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="270" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TaskShape_SendNotification" bpmnElement="Task_SendNotification" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="420" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEventShape_NotificationProcess" bpmnElement="EndEvent_NotificationProcess">
+        <dc:Bounds x="570" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="578" y="153" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="FlowEdge_ReceiveToPrepareNotification" bpmnElement="Flow_ReceiveToPrepareNotification">
+        <di:waypoint x="206" y="118" />
+        <di:waypoint x="270" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="FlowEdge_PrepareToSendNotification" bpmnElement="Flow_PrepareToSendNotification">
+        <di:waypoint x="370" y="118" />
+        <di:waypoint x="420" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="FlowEdge_SendToEnd" bpmnElement="Flow_SendToEnd">
+        <di:waypoint x="520" y="118" />
+        <di:waypoint x="570" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
